@@ -54,6 +54,13 @@ def load_ajax():
 				code[file]=currentCode
 			with open(file+'.pass2') as f:
 				pass2[file] = f.read()
+				temp=""
+				currentFiledata=filedata[fullFile].split("\n")
+				for i,line in enumerate(pass2[file].split("\n")):
+					if(i in linesNo):
+						temp+="------------------------\n"
+					temp+=str(i+1)+": "+line+"\n"
+				pass2[file]=temp
 		with open(fileNames[0].split('.')[0]+'.linked') as f:
 			lin = f.read()	
 	return json.dumps({'lineNumber' : linesNo,'code':code,'status':'OK' ,'pass1':pass1, 'pass2':pass2, 'lin':lin, 'symTable':symTable, 'globTable':globTable, 'extTable':extTable , 'ifTable': iftable, 'filedata':filedata, 'litTable':litTable})

@@ -8,7 +8,7 @@
       for (var key in x)
       {
         if(key != parseInt(key, 10))
-          stringOut+=key+": "+x[key]+"<br>";
+          stringOut+='<li class="collection-item">'+key+": "+x[key]+"</li>";
       }
       return stringOut;
   };
@@ -16,7 +16,7 @@
   function printRealDic(x){
       var stringOut="";
       for (var key in x)
-          stringOut+=key+": "+x[key]+"<br>";
+          stringOut+='<li class="collection-item">'+key+": "+x[key]+"</li>";
       return stringOut;
   };
 
@@ -24,9 +24,22 @@
       var stringOut="";
       for (var key in x)
           if(x[key]===parseInt(x[key],10))
-            stringOut+=key+": "+x[key]+"<br>";
+            stringOut+='<li class="collection-item">'+key+": "+x[key]+"</li>";
       return stringOut;
   };
+
+  function printRealDic3(x,offset){
+    var stringOut="";
+    var temp=parseInt(offset);
+    for (var key in x){
+      for (var i=0;i<parseInt(key)-temp-1;i++)
+        stringOut+=(temp+i+1)+'<br>'
+      stringOut+='</li>'
+      stringOut+='<li class="collection-item">'+key+": "+x[key];
+      temp=parseInt(key)-1;
+    }
+    return stringOut;
+};
 
   var idarr = ['input-files','pass1','pass2','linker','simulator'];
   	for(i=0;i<idarr.length;i++)
@@ -77,12 +90,12 @@
               for(i=0;i<fileNames.length;i++){
                 var tempname = fileNames[i].split('.')[0];
                 tabs += '<div id="pass1tab'+i+'" class="col s12">';
-                tabs+= '<div class="col s2 offset-s2 card-panel blue lighten-4 hoverable black-text" >'+response['code'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
-                tabs+= '<div class="col s2 card-panel blue lighten-4 hoverable black-text" >'+response['pass1'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
+                tabs+= '<div class="col s2 offset-s2 card-panel black-text" >'+response['code'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
+                tabs+= '<div class="col s2 card-panel black-text" >'+response['pass1'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
                 tabs+= '<div id="tables" class="row col s4" style="display:block">';
-                tabs+='<div class="col s12 card-panel blue lighten-4 hoverable black-text" > Symbols Table<br>'+printDic(response['symTable'][tempname])+'</div>';
-                tabs+='<div class="col s12 card-panel blue lighten-4 hoverable black-text" > Literals Table<br>'+printRealDic(response['litTable'][tempname])+'</div>';
-                tabs+='<div class="col s12 card-panel blue lighten-4 hoverable black-text" > Global Table<br>'+printDic(response['globTable'][tempname])+'</div>';
+                tabs+='<div class="col s12 card-panel black-text" ><ul class="collection"> <li class="collection-header"><h4>Symbols table</h4></li>'+printDic(response['symTable'][tempname])+'</ul></div>';
+                tabs+='<div class="col s12 card-panel black-text" > <ul class="collection"> <li class="collection-header"><h4>Literal table</h4></li>'+printRealDic(response['litTable'][tempname])+'</ul></div>';
+                tabs+='<div class="col s12 card-panel black-text" > <ul class="collection"> <li class="collection-header"><h4>Global table</h4></li>'+printDic(response['globTable'][tempname])+'</ul></div>';
                 tabs+= '</div>';
                 tabs+='</div>';
               }
@@ -98,11 +111,12 @@
               for(i=0;i<fileNames.length;i++){
                 var tempname = fileNames[i].split('.')[0];
                 tabs += '<div id="pass2tab'+i+'" class="col s12">';
-                tabs+= '<div class="col s4 offset-s2 card-panel blue lighten-4 hoverable black-text " >'+response['pass2'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
+                tabs+= '<div class="col s2 offset-s2 card-panel black-text" >'+response['code'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';                
+                tabs+= '<div class="col s2 card-panel black-text " >'+response['pass2'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
                 tabs+= '<div id="tables" class="row col s4" style="display:block">';
-                tabs+='<div class="col s12 card-panel teal  blue lighten-4 hoverable black-text" > Symbols Table<br>'+printDic(response['symTable'][tempname])+'</div>';
-                tabs+='<div class="col s12 card-panel teal  blue lighten-4 hoverable black-text" > Literals Table<br>'+printRealDic(response['litTable'][tempname])+'</div>';
-                tabs+='<div class="col s12 card-panel teal  blue lighten-4 hoverable black-text" > Global Table<br>'+printDic(response['globTable'][tempname])+'</div>';
+                tabs+='<div class="col s12 card-panel black-text" ><ul class="collection"> <li class="collection-header"><h4>Symbols table</h4></li>'+printDic(response['symTable'][tempname])+'</ul></div>';
+                tabs+='<div class="col s12 card-panel black-text" ><ul class="collection"> <li class="collection-header"><h4>Literals table</h4></li>'+printRealDic(response['litTable'][tempname])+'</ul></div>';
+                tabs+='<div class="col s12 card-panel hoverable black-text" ><ul class="collection"> <li class="collection-header"><h4>Global table</h4></li>'+printDic(response['globTable'][tempname])+'</ul></div>';
                 tabs+= '</div>';
                 tabs+='</div>';
               }
@@ -134,9 +148,9 @@
           success: function(result) {
 
           response = $.parseJSON(result);
-          $('#registers').html('<b>REGISTERS</b><br>'+printDic(response['reg']));
-          $('#memlocs').html('<b>MEMORY LOCATIONS</b><br>'+printRealDic(response['memory']));
-          $('#varlocs').html('<b>VARIABLE LOCATIONS</b><br>'+printRealDic2(response['memoryData']));
+          $('#registers').html('<ul class="collection"> <li class="collection-header"><h4>Registers</h4></li>'+printDic(response['reg']))+'</ul>';
+          $('#memlocs').html('<ul class="collection"> <li class="collection-header"><h4>Memory Locations</h4></li>'+printRealDic3(response['memory'],offset))+'</ul>';
+          $('#varlocs').html('<ul class="collection"> <li class="collection-header"><h4>Variable Locations</h4></li>'+printRealDic2(response['memoryData']))+'</ul>';
           console.log(response['memoryData']);
           $('#currentInst').html('<b>CURRENT INSTRUCTION: </b>'+ response['memory'][response['reg']['PC']]);
          }   
@@ -151,9 +165,9 @@
         // contentType: 'application/json;charset=UTF-8',
         success: function(result) {
           response = $.parseJSON(result);
-          $('#registers').html('<b> REGISTERS</b><br>'+printDic(response['reg']));
-          $('#memlocs').html('<b> MEMORY LOCATIONS</b><br>'+printRealDic(response['memory']));
-          $('#varlocs').html('<b> VARIABLE LOCATIONS</b><br>'+printRealDic2(response['memoryData']));
+          $('#registers').html('<ul class="collection"> <li class="collection-header"><h4>Registers</h4></li>'+printDic(response['reg'])+'</ul>');
+          $('#memlocs').html('<ul class="collection"> <li class="collection-header"><h4>Memory Locations</h4></li>'+printRealDic3(response['memory'],offset)+'</ul>');
+          $('#varlocs').html('<ul class="collection"> <li class="collection-header"><h4>Variable Locations</h4></li>'+printRealDic2(response['memoryData'])+'</ul>');
           console.log(response['memoryData']);
           $('#currentInst').html('<b> CURRENT INSTRUCTION: </b>'+ response['memory'][response['reg']['PC']]);
           // $('#stack').html(stackString(response['stack']));
