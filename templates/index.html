@@ -32,7 +32,7 @@
 				<div style="padding-top: 2%">
 					<div class = "row" id="titleBox">
 					  <div class="col s8 offset-s2">
-					    <div class="card-panel blue darken-3 hoverable"  style="margin:0px auto;">		 		
+					    <div class="card-panel blue darken-3 hoverable"  style="margin:0px auto;">
 					      <span class="white-text" style="text-align: center;font-size:40px;">
 							<center>PythonScript Simulator</center>
 					      </span>
@@ -58,13 +58,39 @@
 					    <div class="file-path-wrapper">
 					      <input class="file-path validate black-text" type="text" placeholder="Upload one or more files">
 					    </div>
-						<div style="padding-left: 45%">
+						<div style="padding-left:40%">
 					    <button class="btn waves-effect blue darken-2 waves-light" type="button" id="submit-button" name="submit">Submit<i class="material-icons right">send</i>
 					  	</button>
 					  	</div>
 					  </div>
 					</form>
-					<div id='file-data'></div>
+					<br>
+					<br>
+					<ul class="collapsible">
+						<li>
+							<div class="collapsible-header"><i class="material-icons">code</i>Show Code</div>
+							<div class="collapsible-body">
+									<div id='file-data'></div>
+							</div>
+						</li>
+					</ul>
+
+					<br>
+					<ul class="collapsible">
+							<li>
+								<div class="collapsible-header"><i class="material-icons">code</i>Enter Code</div>
+								<div class="collapsible-body">
+									<form id="input-form2"  method="post">
+										<textarea name="code" id="mytextarea" style="height:400px;background-color:white" rows="8" cols="80"></textarea>
+										<br><br>
+										<button class="btn waves-effect blue darken-2 waves-light" type="button" id="submit-code" name="submit">Submit<i class="material-icons right">send</i>
+										</button>
+									</form>
+								</div>
+							</li>
+					</ul>
+					<br>
+
 				</div>
 				<div id="pass1"></div>
 				<div id="pass2"></div>
@@ -77,11 +103,11 @@
 					      </span>
 					    </div>
 					  </div>
-					</div>       
+					</div>
 				</div>
 				<div id="simulator">
 					<div class="row">
-					  <div class="col s3" style="text-align: center">			 		
+					  <div class="col s3" style="text-align: center">
 					      <div class="input-field col s6">
 			      	        <input placeholder="Offset" id="offset" type="text" class="validate">
 			      	      </div>
@@ -91,14 +117,14 @@
 					  </div>
 					  <div class="col s6 ">
 					    <div class="card-panel blue lighten-4 hoverable black-text"  style="margin:0px auto;">
-					 		
+
 					      <span class="black-text" id="currentInst">
 							Nothing Loaded yet
 					      </span>
 					    </div>
 					  </div>
 					  <div class="col s3" style="text-align: center">
-					 		
+
 					      <span class="black-text">
 							<a class="btn-large btn-floating waves-effect waves-light blue lighten-3 black-text" id="runButton"><i class="material-icons">play_arrow</i></a>
 						</span>
@@ -108,7 +134,7 @@
 					  <div class="col s6" style="display:block">
 					    <div class="card-panel blue lighten-4 hoverable black-text col s12" style="margin:20px auto;padding:10px;">
 					      <span class="" id="registers">
-							Registers	
+							Registers
 					      </span>
 					    </div>
 					    <div class="card-panel blue lighten-4 hoverable black-text col s12" style="margin:20px auto;padding:10px;">
@@ -120,7 +146,7 @@
 					  <div class="col s6 ">
 					  <br>
 					    <div class="card-panel blue lighten-4 hoverable black-text" style="margin:0px auto;padding:10px;">
-					 		
+
 					      <span class="" id="memlocs">
 							Memory Location
 					      </span>
