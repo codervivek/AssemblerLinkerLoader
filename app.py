@@ -141,6 +141,7 @@ def loadSimulator():
 		memory = main.getMemlocs()
 		memoryData = main.getMemData()
 		stack = main.getStack()
+		# pc = main.getProgramCounter()
 		# print("ASDFASDFASFDASFDSFAFDASFASDF", memoryData)
 		return json.dumps({'status':'OK', 'reg':reg, 'memory':memory , 'memoryData':memoryData, 'stack':stack})
 
@@ -153,6 +154,7 @@ def runSimulator():
 		memory = main.getMemlocs()
 		memoryData = main.getMemData()
 		stack = main.getStack()
+		# pc = main.getProgramCounter()	
 		print("STACK : ", stack)
 		return json.dumps({'status':'OK', 'reg':reg, 'memory':memory, 'memoryData':memoryData, 'stack':stack})
 

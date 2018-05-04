@@ -52,6 +52,10 @@ def runSimulator():
 def getRegisters():
 	return simulation.reg
 
+# Get register values
+def getProgramCounter():
+	return simulation.PC
+
 # get Stack of simulator
 def getStack():
 	return simulation.stack

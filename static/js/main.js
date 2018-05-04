@@ -28,14 +28,19 @@
       return stringOut;
   };
 
-  function printRealDic3(x,offset){
+  function printRealDic3(x,offset,line){
     var stringOut="";
     var temp=parseInt(offset);
     for (var key in x){
-      for (var i=0;i<parseInt(key)-temp-1;i++)
-        stringOut+=(temp+i+1)+'<br>'
+      for (var i=0;i<parseInt(key)-temp-2;i++)
+        stringOut+=(temp+i+2)+'<br>'
       stringOut+='</li>'
-      stringOut+='<li class="collection-item">'+key+": "+x[key];
+      if (line==key){
+        stringOut+='<li class="collection-item active">'+key+": "+x[key]+'<br>';
+      }
+      else{
+        stringOut+='<li class="collection-item">'+key+": "+x[key]+'<br>';
+      }
       temp=parseInt(key)-1;
     }
     return stringOut;
@@ -227,7 +232,7 @@
 
           response = $.parseJSON(result);
           $('#registers').html('<ul class="collection"> <li class="collection-header"><h4>Registers</h4></li>'+printDic(response['reg']))+'</ul>';
-          $('#memlocs').html('<ul class="collection"> <li class="collection-header"><h4>Memory Locations</h4></li>'+printRealDic3(response['memory'],offset))+'</ul>';
+          $('#memlocs').html('<ul class="collection"> <li class="collection-header"><h4>Memory Locations</h4></li>'+printRealDic3(response['memory'],offset,parseInt(response['reg']['PC'])))+'</ul>';
           $('#varlocs').html('<ul class="collection"> <li class="collection-header"><h4>Variable Locations</h4></li>'+printRealDic2(response['memoryData']))+'</ul>';
           console.log(response['memoryData']);
           $('#currentInst').html('<b>CURRENT INSTRUCTION: </b>'+ response['memory'][response['reg']['PC']]);
@@ -244,7 +249,7 @@
         success: function(result) {
           response = $.parseJSON(result);
           $('#registers').html('<ul class="collection"> <li class="collection-header"><h4>Registers</h4></li>'+printDic(response['reg'])+'</ul>');
-          $('#memlocs').html('<ul class="collection"> <li class="collection-header"><h4>Memory Locations</h4></li>'+printRealDic3(response['memory'],offset)+'</ul>');
+          $('#memlocs').html('<ul class="collection"> <li class="collection-header"><h4>Memory Locations</h4></li>'+printRealDic3(response['memory'],offset,parseInt(response['reg']['PC']))+'</ul>');
           $('#varlocs').html('<ul class="collection"> <li class="collection-header"><h4>Variable Locations</h4></li>'+printRealDic2(response['memoryData'])+'</ul>');
           console.log(response['memoryData']);
           $('#currentInst').html('<b> CURRENT INSTRUCTION: </b>'+ response['memory'][response['reg']['PC']]);
@@ -267,3 +272,7 @@
   	}
   });
 })(jQuery);
+
+// $('collection-item').click(function(){
+//   $("body").css({"backgroundColor" : "blue"});
+// })
