@@ -55,6 +55,8 @@ def pass1(fileNames):
 	global iftable
 	global fcalls  
 	global loops
+	global linesno
+	linesno={}
 	findoptab()
 
 	'''
@@ -110,13 +112,14 @@ def pass1(fileNames):
 	remacro = re.compile("\s*macro\s*")
 	remend = re.compile("\s*mend\s*")
 
+	recomm = re.compile("^\\\\")
 
 	for filenam in fileNames:
 		with open(filenam, 'r') as file:
 			code = file.read()
-			lines = code.split('\n')
+			lines = [i for i in code.split('\n') if not recomm.match(i)]
 			file.close()
-
+		print(lines)
 		# get the filename
 		filename = filenam.split('.')[0]
 
@@ -147,6 +150,10 @@ def pass1(fileNames):
 			if remacro.match(line):
 				macro_define=1
 				continue
+
+			elif recomm.match(line):
+				print("apple")
+				continue	
 			
 			elif remend.match(line):
 				macro_define=0

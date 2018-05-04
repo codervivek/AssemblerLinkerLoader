@@ -92,12 +92,12 @@
         for(i=0;i<fileNames.length;i++){
           var tempname = fileNames[i].split('.')[0];
           tabs += '<div id="pass1tab'+i+'" class="col s12">';
-          tabs+= '<div class="col s2 offset-s2 card-panel blue lighten-4 hoverable black-text" >'+response['code'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
-          tabs+= '<div class="col s2 card-panel blue lighten-4 hoverable black-text" >'+response['pass1'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
+          tabs+= '<div class="col s2 offset-s2 card-panel blue lighten-4 black-text" ><h5> Original Code</h5> <ul class="collection"><li class="collection-item">'+response['code'][fileNames[i].split('.')[0]].replace(/\n/g,'</li><li class="collection-item">')+'</li></div>';
+          tabs+= '<div class="col s2 card-panel blue lighten-4 black-text" ><h5>Assembly Code</h5><ul class="collection"><li class="collection-item">'+response['pass1'][fileNames[i].split('.')[0]].replace(/\n/g,'</li><li class="collection-item">')+'</li></div>';
           tabs+= '<div id="tables" class="row col s4" style="display:block">';
-          tabs+='<div class="col s12 card-panel blue lighten-4 hoverable black-text" > Symbols Table<br>'+printDic(response['symTable'][tempname])+'</div>';
-          tabs+='<div class="col s12 card-panel blue lighten-4 hoverable black-text" > Literals Table<br>'+printRealDic(response['litTable'][tempname])+'</div>';
-          tabs+='<div class="col s12 card-panel blue lighten-4 hoverable black-text" > Global Table<br>'+printDic(response['globTable'][tempname])+'</div>';
+          tabs+='<div class="col s12 card-panel blue lighten-4 black-text" ><ul class="collection"> <li class="collection-header"><h5>Symbols table</h5></li>'+printDic(response['symTable'][tempname])+'</ul></div>';
+          tabs+='<div class="col s12 card-panel blue lighten-4 black-text" > <ul class="collection"> <li class="collection-header"><h5>Literal table</h5></li>'+printRealDic(response['litTable'][tempname])+'</ul></div>';
+          tabs+='<div class="col s12 card-panel blue lighten-4 black-text" > <ul class="collection"> <li class="collection-header"><h5>Global table</h5></li>'+printDic(response['globTable'][tempname])+'</ul></div>';
           tabs+= '</div>';
           tabs+='</div>';
         }
@@ -113,11 +113,12 @@
         for(i=0;i<fileNames.length;i++){
           var tempname = fileNames[i].split('.')[0];
           tabs += '<div id="pass2tab'+i+'" class="col s12">';
-          tabs+= '<div class="col s4 offset-s2 card-panel blue lighten-4 hoverable black-text " >'+response['pass2'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
+          tabs+= '<div class="col s2 offset-s2 card-panel blue lighten-4 black-text" ><h5> Original Code</h5> <ul class="collection"><li class="collection-item">'+response['code'][fileNames[i].split('.')[0]].replace(/\n/g,'</li><li class="collection-item">')+'</div>';                
+          tabs+= '<div class="col s2 card-panel black-text blue lighten-4 " ><h5>Assembly Code</h5><ul class="collection"><li class="collection-item">'+response['pass2'][fileNames[i].split('.')[0]].replace(/\n/g,'</li><li class="collection-item">')+'</div>';
           tabs+= '<div id="tables" class="row col s4" style="display:block">';
-          tabs+='<div class="col s12 card-panel teal  blue lighten-4 hoverable black-text" > Symbols Table<br>'+printDic(response['symTable'][tempname])+'</div>';
-          tabs+='<div class="col s12 card-panel teal  blue lighten-4 hoverable black-text" > Literals Table<br>'+printRealDic(response['litTable'][tempname])+'</div>';
-          tabs+='<div class="col s12 card-panel teal  blue lighten-4 hoverable black-text" > Global Table<br>'+printDic(response['globTable'][tempname])+'</div>';
+          tabs+='<div class="col s12 card-panel black-text blue lighten-4 " ><ul class="collection"> <li class="collection-header"><h5>Symbols table</h5></li>'+printDic(response['symTable'][tempname])+'</ul></div>';
+          tabs+='<div class="col s12 card-panel black-text blue lighten-4 " ><ul class="collection"> <li class="collection-header"><h5>Literals table</h5></li>'+printRealDic(response['litTable'][tempname])+'</ul></div>';
+          tabs+='<div class="col s12 card-panel hoverable black-text blue lighten-4" ><ul class="collection"> <li class="collection-header"><h5>Global table</h5></li>'+printDic(response['globTable'][tempname])+'</ul></div>';
           tabs+= '</div>';
           tabs+='</div>';
         }
@@ -173,12 +174,12 @@
               for(i=0;i<fileNames.length;i++){
                 var tempname = fileNames[i].split('.')[0];
                 tabs += '<div id="pass1tab'+i+'" class="col s12">';
-                tabs+= '<div class="col s2 offset-s2 card-panel black-text" >'+response['code'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
-                tabs+= '<div class="col s2 card-panel black-text" >'+response['pass1'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
+                tabs+= '<div class="col s2 offset-s2 card-panel blue lighten-4 black-text" ><h5> Original Code</h5> <ul class="collection"><li class="collection-item">'+response['code'][fileNames[i].split('.')[0]].replace(/\n/g,'</li><li class="collection-item">')+'</li></div>';
+                tabs+= '<div class="col s2 card-panel blue lighten-4 black-text" ><h5>Assembly Code</h5><ul class="collection"><li class="collection-item">'+response['pass1'][fileNames[i].split('.')[0]].replace(/\n/g,'</li><li class="collection-item">')+'</li></div>';
                 tabs+= '<div id="tables" class="row col s4" style="display:block">';
-                tabs+='<div class="col s12 card-panel black-text" ><ul class="collection"> <li class="collection-header"><h4>Symbols table</h4></li>'+printDic(response['symTable'][tempname])+'</ul></div>';
-                tabs+='<div class="col s12 card-panel black-text" > <ul class="collection"> <li class="collection-header"><h4>Literal table</h4></li>'+printRealDic(response['litTable'][tempname])+'</ul></div>';
-                tabs+='<div class="col s12 card-panel black-text" > <ul class="collection"> <li class="collection-header"><h4>Global table</h4></li>'+printDic(response['globTable'][tempname])+'</ul></div>';
+                tabs+='<div class="col s12 card-panel blue lighten-4 black-text" ><ul class="collection"> <li class="collection-header"><h5>Symbols table</h5></li>'+printDic(response['symTable'][tempname])+'</ul></div>';
+                tabs+='<div class="col s12 card-panel blue lighten-4 black-text" > <ul class="collection"> <li class="collection-header"><h5>Literal table</h5></li>'+printRealDic(response['litTable'][tempname])+'</ul></div>';
+                tabs+='<div class="col s12 card-panel blue lighten-4 black-text" > <ul class="collection"> <li class="collection-header"><h5>Global table</h5></li>'+printDic(response['globTable'][tempname])+'</ul></div>';
                 tabs+= '</div>';
                 tabs+='</div>';
               }
@@ -194,12 +195,12 @@
               for(i=0;i<fileNames.length;i++){
                 var tempname = fileNames[i].split('.')[0];
                 tabs += '<div id="pass2tab'+i+'" class="col s12">';
-                tabs+= '<div class="col s2 offset-s2 card-panel black-text" >'+response['code'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';                
-                tabs+= '<div class="col s2 card-panel black-text " >'+response['pass2'][fileNames[i].split('.')[0]].replace(/\n/g,"<br>")+'</div>';
+                tabs+= '<div class="col s2 offset-s2 card-panel blue lighten-4 black-text" ><h5> Original Code</h5> <ul class="collection"><li class="collection-item">'+response['code'][fileNames[i].split('.')[0]].replace(/\n/g,'</li><li class="collection-item">')+'</div>';                
+                tabs+= '<div class="col s2 card-panel black-text blue lighten-4 " ><h5>Assembly Code</h5><ul class="collection"><li class="collection-item">'+response['pass2'][fileNames[i].split('.')[0]].replace(/\n/g,'</li><li class="collection-item">')+'</div>';
                 tabs+= '<div id="tables" class="row col s4" style="display:block">';
-                tabs+='<div class="col s12 card-panel black-text" ><ul class="collection"> <li class="collection-header"><h4>Symbols table</h4></li>'+printDic(response['symTable'][tempname])+'</ul></div>';
-                tabs+='<div class="col s12 card-panel black-text" ><ul class="collection"> <li class="collection-header"><h4>Literals table</h4></li>'+printRealDic(response['litTable'][tempname])+'</ul></div>';
-                tabs+='<div class="col s12 card-panel hoverable black-text" ><ul class="collection"> <li class="collection-header"><h4>Global table</h4></li>'+printDic(response['globTable'][tempname])+'</ul></div>';
+                tabs+='<div class="col s12 card-panel black-text blue lighten-4 " ><ul class="collection"> <li class="collection-header"><h5>Symbols table</h5></li>'+printDic(response['symTable'][tempname])+'</ul></div>';
+                tabs+='<div class="col s12 card-panel black-text blue lighten-4 " ><ul class="collection"> <li class="collection-header"><h5>Literals table</h5></li>'+printRealDic(response['litTable'][tempname])+'</ul></div>';
+                tabs+='<div class="col s12 card-panel hoverable black-text blue lighten-4" ><ul class="collection"> <li class="collection-header"><h5>Global table</h5></li>'+printDic(response['globTable'][tempname])+'</ul></div>';
                 tabs+= '</div>';
                 tabs+='</div>';
               }
@@ -231,9 +232,9 @@
           success: function(result) {
 
           response = $.parseJSON(result);
-          $('#registers').html('<ul class="collection"> <li class="collection-header"><h4>Registers</h4></li>'+printDic(response['reg']))+'</ul>';
-          $('#memlocs').html('<ul class="collection"> <li class="collection-header"><h4>Memory Locations</h4></li>'+printRealDic3(response['memory'],offset,parseInt(response['reg']['PC'])))+'</ul>';
-          $('#varlocs').html('<ul class="collection"> <li class="collection-header"><h4>Variable Locations</h4></li>'+printRealDic2(response['memoryData']))+'</ul>';
+          $('#registers').html('<ul class="collection"> <li class="collection-header"><h5>Registers</h5></li>'+printDic(response['reg']))+'</ul>';
+          $('#memlocs').html('<ul class="collection"> <li class="collection-header"><h5>Memory Locations</h5></li>'+printRealDic3(response['memory'],offset,parseInt(response['reg']['PC'])))+'</ul>';
+          $('#varlocs').html('<ul class="collection"> <li class="collection-header"><h5>Variable Locations</h5></li>'+printRealDic2(response['memoryData']))+'</ul>';
           console.log(response['memoryData']);
           $('#currentInst').html('<b>CURRENT INSTRUCTION: </b>'+ response['memory'][response['reg']['PC']]);
          }
@@ -248,9 +249,9 @@
         // contentType: 'application/json;charset=UTF-8',
         success: function(result) {
           response = $.parseJSON(result);
-          $('#registers').html('<ul class="collection"> <li class="collection-header"><h4>Registers</h4></li>'+printDic(response['reg'])+'</ul>');
-          $('#memlocs').html('<ul class="collection"> <li class="collection-header"><h4>Memory Locations</h4></li>'+printRealDic3(response['memory'],offset,parseInt(response['reg']['PC']))+'</ul>');
-          $('#varlocs').html('<ul class="collection"> <li class="collection-header"><h4>Variable Locations</h4></li>'+printRealDic2(response['memoryData'])+'</ul>');
+          $('#registers').html('<ul class="collection"> <li class="collection-header"><h5>Registers</h5></li>'+printDic(response['reg'])+'</ul>');
+          $('#memlocs').html('<ul class="collection"> <li class="collection-header"><h5>Memory Locations</h5></li>'+printRealDic3(response['memory'],offset,parseInt(response['reg']['PC']))+'</ul>');
+          $('#varlocs').html('<ul class="collection"> <li class="collection-header"><h5>Variable Locations</h5></li>'+printRealDic2(response['memoryData'])+'</ul>');
           console.log(response['memoryData']);
           $('#currentInst').html('<b> CURRENT INSTRUCTION: </b>'+ response['memory'][response['reg']['PC']]);
           // $('#stack').html(stackString(response['stack']));

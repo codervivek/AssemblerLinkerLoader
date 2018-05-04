@@ -1,6 +1,7 @@
 import os
 from flask import *
 import main
+import re
 
 app = Flask(__name__)
 
@@ -11,12 +12,12 @@ def searchpage():
 @app.route('/load_ajax2', methods=["GET", "POST"])
 def load_ajax2():
 	if request.method == "POST":
-		print("Hi this is also kapil goyal")
+		# print("Hi this is also kapil goyal")
 		data2 =  request.get_json()
-		print(data2)
+		# print(data2)
 		with open("my_file.txt", 'w+') as f:
 			f.write(data2)
-		print(data2)
+		# print(data2)
 
 		data =  {'files': ['my_file.txt']}
 		fileNames = data['files']
@@ -48,7 +49,8 @@ def load_ajax2():
 				pass1[file] = f.read()
 				temp=""
 				currentCode=""
-				currentFiledata=filedata[fullFile].split("\n")
+				recomm = re.compile("^\\\\")
+				currentFiledata = [i for i in filedata[fullFile].split("\n") if not recomm.match(i)]
 				for i,line in enumerate(pass1[file].split("\n")):
 					if(i in linesNo):
 						currentCode+="------------------------\n"
@@ -102,14 +104,16 @@ def load_ajax():
 				pass1[file] = f.read()
 				temp=""
 				currentCode=""
-				currentFiledata=filedata[fullFile].split("\n")
+				recomm = re.compile("^\\\\")
+				currentFiledata = [i for i in filedata[fullFile].split("\n") if not recomm.match(i)]
+				# currentFiledata=filedata[fullFile].split("\n")
 				for i,line in enumerate(pass1[file].split("\n")):
 					if(i in linesNo):
 						currentCode+="------------------------\n"
 						temp+="------------------------\n"
 						currentCode+=currentFiledata[linesNo[i]]+"\n"
 					else:
-						currentCode+="\n"
+						currentCode+=".\n"
 					temp+=str(i+1)+": "+line+"\n"
 				pass1[file]=temp
 				code[file]=currentCode
@@ -159,4 +163,4 @@ def runSimulator():
 		return json.dumps({'status':'OK', 'reg':reg, 'memory':memory, 'memoryData':memoryData, 'stack':stack})
 
 if __name__=="__main__":
-	app.run(host='0.0.0.0', debug=True)
+	app.run(host='127.0.0.1', debug=True)
